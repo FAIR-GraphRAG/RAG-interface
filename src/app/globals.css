@@ -1,8 +1,21 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #1a202c;
+  --background: #e8f1fa;
+  --foreground: #00549f;
+  --brand-light: #8ebae5;
+  --brand:       #407fb7;
+  --brand-dark:  #00549f;
+}
+
+@layer utilities {
+  .text-brand        { color: var(--brand); }
+  .bg-brand          { background-color: var(--brand); }
+  .hover\:bg-brand-dark:hover { background-color: var(--brand-dark); }
+  .border-brand     { border-color: var(--brand); }
+  .focus\:ring-brand:focus {
+    --tw-ring-color: var(--brand);
+  }
 }
 
 @theme inline {
@@ -15,7 +28,7 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #1a202c;
-    --foreground: #ededed;
+    --foreground: #1a202c;
   }
 }
 
