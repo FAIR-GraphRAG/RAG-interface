@@ -1,30 +1,58 @@
 import { NextResponse } from 'next/server';
+import { GraphCypherQAChain } from 'langchain/chains/graph_qa/cypher';
+import { AzureChatOpenAI } from '@langchain/openai';
+import neo4j from 'neo4j-driver';
 
-export async function POST(request) {
-  const { messages } = await request.json();
+export async function POST(req) {
+  const { messages } = await req.json();
+  const question = messages.filter(m => m.role === 'user').pop()?.content;
+  if (!question) return new NextResponse('No user message', { status: 400 });
 
-  const url = process.env.AZURE_OPENAI_ENDPOINT;
-  const apiKey = process.env.AZURE_OPENAI_API_KEY;
+  /* One driver per server process */
+  const driver = neo4j.driver(
+    process.env.NEO4J_URI,
+    neo4j.auth.basic(process.env.NEO4J_USERNAME, process.env.NEO4J_PASSWORD)
+  );
+
+  /* Opens its *own* session every time */
+  const runRead = async (cypher) => {
+    const session = driver.session({ defaultAccessMode: neo4j.session.READ });
+    try {
+      const res = await session.run(cypher);
+      return res.records.map(r => r.toObject());
+    } finally {
+      await session.close(); 
+    }
+  };
+
+  /* Graph wrapper that GraphCypherQAChain expects */
+  const graph = {
+    query: runRead,
+    getSchema: async () =>
+      runRead('CALL db.schema.visualization()').then(recs => ({
+        nodes: recs.flatMap(r => r.nodes),
+        relationships: recs.flatMap(r => r.relationships),
+      })),
+  };
+
+  /* Azure OpenAI LLM */
+  const llm = new AzureChatOpenAI({
+    azureOpenAIApiKey: process.env.AZURE_OPENAI_API_KEY,
+    azureOpenAIApiInstanceName: process.env.AZURE_OPENAI_INSTANCE_NAME,
+    azureOpenAIApiDeploymentName: process.env.AZURE_OPENAI_DEPLOYMENT_NAME,
+    azureOpenAIApiVersion: process.env.AZURE_OPENAI_API_VERSION,
+    temperature: 0,
+    model: 'gpt-4o-mini',
+  });
 
   try {
-    const res = await fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'api-key': apiKey,
-      },
-      body: JSON.stringify({ messages, max_tokens: 500, temperature: 0.7 }),
-    });
-
-    if (!res.ok) {
-      const errorText = await res.text();
-      return new NextResponse(errorText, { status: res.status });
-    }
-
-    const data = await res.json();
-    const next_response =  NextResponse.json({ reply: data.choices[0].message });
-    return next_response;
-  } catch (err) {
-    return new NextResponse(err.message, { status: 500 });
+    const chain = GraphCypherQAChain.fromLLM({ llm, graph });
+    const { result } = await chain.invoke({ query: question });
+    return NextResponse.json({ reply: { role: 'assistant', content: result } });
+  } catch (e) {
+    console.error('Graph QA error:', e);
+    return new NextResponse('Internal Error: ' + e.message, { status: 500 });
+  } finally {
+    await driver.close();
   }
 }
