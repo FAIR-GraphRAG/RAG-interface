@@ -57,7 +57,7 @@ export default function ChatPage() {
         <img
           src="/graph_view.svg"
           alt="Inspect graph in Neo4j"
-          className="h-12 w-12 md:h-30 md:w-30"    // same approximate height as your text (2xl ~ 1.5rem)
+          className="h-12 w-12 md:h-30 md:w-30" 
         />
         <span className="text-xs md:text-base text-gray-600 whitespace-nowrap">
           Inspect in <span className="text-brand">Neo4j</span> 👆
