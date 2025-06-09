@@ -2,6 +2,8 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { Send } from 'lucide-react';
+import ExpandableKeyValue from '@/components/Expandable';
+import Image from 'next/image'
 
 export default function ChatPage() {
   const [messages, setMessages] = useState([
@@ -25,8 +27,14 @@ export default function ChatPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ messages: history }),
       });
-      const { reply } = await res.json();
-      setMessages(prev => [...prev, reply]);
+      const data = await res.json();
+      const reply = data?.reply;
+
+      if (reply) {
+        setMessages(prev => [...prev, { ...reply, context: reply.context }]);
+      } else {
+        setMessages(prev => [...prev, { role: 'assistant', content: '⚠️ No reply from server.' }]);
+      }
     } catch (err) {
       setMessages(prev => [
         ...prev,
@@ -74,7 +82,7 @@ export default function ChatPage() {
         </header>
 
         {/* Chat history */}
-        <div className="flex-1 overflow-y-auto p-6 space-y-4 pb-32">
+        <div className="flex-1 overflow-y-auto p-6 space-y-4 pb-32 bg-gray-50">
           {messages.map((msg, i) => (
             <div
               key={i}
@@ -87,11 +95,58 @@ export default function ChatPage() {
                     : 'bg-white text-gray-800 shadow'
                 }`}
               >
-                {msg.content}
+                <div>{msg.content}</div>
+                {/* Cypher Query (collapsible) */}
+                {msg.context?.cypher?.query && (
+                  <details className="mt-2 text-xs text-gray-600">
+                    <summary className="cursor-pointer font-semibold text-sm">Cypher Query</summary>
+                    <pre className="bg-gray-100 p-2 rounded mt-1 whitespace-pre-wrap text-[11px]">
+                      {msg.context.cypher.query}
+                    </pre>
+                  </details>
+                )}
+                {/* Node Data (collapsible) */}
+                {Array.isArray(msg.context?.nodeData) && msg.context.nodeData.length > 0 && (
+                <details className="mt-2 text-xs text-gray-600">
+                  <summary className="cursor-pointer font-semibold text-sm flex items-center">
+                    ▸ FAIR Digital Object Data&nbsp;
+                      <Image
+                        src="/FDO1.png"
+                        alt="FDO"
+                        width={23}
+                        height={23}
+                        className="mr-1"
+                      />
+                  </summary>
+                  <ul className="mt-1 space-y-4">
+                    {msg.context.nodeData.map((node, idx) => {
+                      const sortedProps = Object.keys(node.properties || {})
+                        .sort()
+                        .reduce((acc, key) => {
+                          acc[key] = node.properties[key];
+                          return acc;
+                        }, {});
+
+                      return (
+                        <li key={idx} className="bg-gray-100 p-4 rounded text-xs">
+                          <div className="mb-2 font-mono text-gray-500">ID: {node.id}</div>
+                          <div className="mb-2 font-mono text-gray-500">Labels: [{node.labels.join(', ')}]</div>
+                          <div className="space-y-1">
+                            {Object.entries(sortedProps).map(([key, value]) => (
+                              <ExpandableKeyValue key={key} label={key} value={value} />
+                            ))}
+                          </div>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </details>
+              )}
+
+
               </div>
             </div>
           ))}
-
           {loading && (
             <div className="flex justify-start">
               <div className="max-w-xl px-4 py-2 rounded-xl bg-white text-gray-500 shadow animate-pulse">
