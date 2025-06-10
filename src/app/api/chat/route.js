@@ -127,7 +127,6 @@ export async function POST(req) {
     azureOpenAIApiDeploymentName: process.env.AZURE_OPENAI_DEPLOYMENT_NAME,
     azureOpenAIApiVersion: process.env.AZURE_OPENAI_API_VERSION,
     temperature: 0,
-    model: 'gpt-4o-mini',
   });
 
   async function runGraphQA(promptTemplate) {
