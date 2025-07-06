@@ -5,16 +5,16 @@ export default function Home() {
     <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 py-20 px-4">
       <div className="max-w-5xl mx-auto text-center">
         <h1 className="text-5xl font-extrabold text-gray-800 mb-6 leading-tight">
-          <span className="text-brand">FAIR Graph RAG</span>: Make the Most of Your Data
+          <span className="text-brand">FAIR GraphRAG</span>: Make the Most of Your Data
         </h1>
 
         <p className="text-lg text-gray-600 max-w-3xl mx-auto mb-10">
-          Transform your datasets into powerful knowledge assets. FAIR Graph RAG empowers researchers, teams, and organizations to structure their data for findability, accessibility, and intelligent interaction — from the very beginning. Built for interoperability, driven by graph-based connections, and enhanced with a natural chatbot interface, this is data done right.
+          Transform your datasets into powerful knowledge assets. FAIR GraphRAG empowers researchers, teams, and organizations to structure their data for findability, accessibility, interoperability and reusability — from the very beginning. Driven by graph-based connections and enhanced with a natural chatbot interface, this is data done right.
         </p>
 
-        <Link href="/concept" passHref>
-          <p className="inline-block mt-8 px-6 py-3 bg-brand hover:bg-brand-dark text-white text-lg rounded-xl shadow transition">
-            Learn How It Works
+        <Link href="/chat" passHref>
+          <p className="inline-block mt-2 px-6 py-0 bg-brand hover:bg-brand-dark text-white text-lg rounded-xl shadow transition">
+            Chat With Your Data
           </p>
         </Link>
 
@@ -43,9 +43,9 @@ export default function Home() {
 
           {/* Graph icon */}
           <img
-            src="/graph_view.svg"
+            src="/graph_view3.svg"
             alt="Graph View"
-            className="w-36 h-36 md:w-72 md:h-72"
+            className="w-36 h-36 md:w-50 md:h-50"
           />
         </div>
         {/* —––––– End Illustration –––––— */}
