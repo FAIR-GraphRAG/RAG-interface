@@ -32,7 +32,7 @@ export default function Navigation() {
         </div>
         <div className="flex space-x-2">
           <Link href="/" className="text-md md:text-xl font-bold text-brand">
-            FAIR Graph RAG
+            FAIR GraphRAG
           </Link>
         </div>
 
