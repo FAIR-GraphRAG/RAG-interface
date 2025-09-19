@@ -58,7 +58,7 @@ This project is licensed under the [MIT License](LICENSE). You are free to use, 
 
 ## Project Metadata
 
-- **Title:** FAIR Retrieval Augmented Generation Interface  
+- **Title:** FAIR Retrieval-Augmented Generation Interface  
 - **Description:** A user-interface for interacting with a FAIR-compliant knowledge graph stored in Neo4j graph database.  
 - **Keywords:** FAIR Principles, knowledge graph construction, large language model  
 - **Authors:**  Marlena Flüh
