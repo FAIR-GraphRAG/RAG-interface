@@ -8,5 +8,5 @@ authors:
     affiliation: "RWTH Aachen University, Germany"
     orcid: "https://orcid.org/0009-0008-6379-2988"
 date-released: "2025-09-19"
-repository-code: "https://github.com/FAIR-GraphRAG/RAG_interface"
+repository-code: "https://github.com/FAIR-GraphRAG/RAG-interface"
 license: MIT
