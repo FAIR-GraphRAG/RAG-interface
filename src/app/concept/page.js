@@ -30,6 +30,14 @@ export default function ConceptPage() {
 
   return (
     <div className="min-h-screen bg-gray-50 py-12 px-4">
+       {/* Info box */}
+      <div className="absolute top-4 right-4 bg-yellow-100 border border-yellow-300 text-yellow-800 text-sm px-4 py-2 rounded-lg shadow max-w-xs">
+        Uploading not available yet — only{' '}
+        <Link href="/chat" className="underline font-medium hover:text-yellow-900">
+          chat
+        </Link>{' '}
+        works.
+      </div>
       <div className="max-w-5xl mx-auto text-center">
         <h1 className="text-4xl font-extrabold text-gray-800 mb-12">
           Understand your data and make them <span className="text-brand">FAIR</span>
@@ -40,8 +48,6 @@ export default function ConceptPage() {
             <div 
             key={idx}
             className="bg-white shadow-lg rounded-2xl p-6 flex flex-col items-start text-left hover:shadow-xl transition">
-              
-            {/* Image now centered */}
             <div className="w-60 h-40 md:w-90 md:h-40 mb-4 relative self-center">
               <Image
                 src={step.imgSrc}

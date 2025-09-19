@@ -5,6 +5,12 @@ This is the user interface for the FAIR GraphRAG system and a [Next.js](https://
 
 ## Getting Started
 
+Install dependencies:
+
+```bash
+npm install
+```
+
 First, run the development server:
 
 ```bash

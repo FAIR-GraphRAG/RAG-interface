@@ -34,6 +34,14 @@ export default function Upload() {
 
   return (
     <div className="min-h-screen bg-gray-50 py-12 px-4">
+      {/* Info box */}
+      <div className="absolute top-4 right-4 bg-yellow-100 border border-yellow-300 text-yellow-800 text-sm px-4 py-2 rounded-lg shadow max-w-xs">
+        Uploading not available yet — only{' '}
+        <Link href="/chat" className="underline font-medium hover:text-yellow-900">
+          chat
+        </Link>{' '}
+        works.
+      </div>
       <div className="max-w-4xl mx-auto">
         <h1 className="text-4xl font-extrabold text-center text-gray-800 mb-12">
           Upload your dataset or data collection

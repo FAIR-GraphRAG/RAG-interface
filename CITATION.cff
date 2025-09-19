@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+title: FAIR RAG Interface
+message: "If you use this software, please cite it as below."
+type: software
+authors:
+  - family-names: Flüh
+    given-names: Marlena
+    affiliation: "RWTH Aachen University, Germany"
+    orcid: "https://orcid.org/0009-0008-6379-2988"
+date-released: "2025-09-19"
+repository-code: "https://github.com/FAIR-GraphRAG/RAG_interface"
+license: MIT
