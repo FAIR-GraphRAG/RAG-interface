@@ -43,15 +43,38 @@ You can start editing the landing page by modifying `app/page.js`. The page auto
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-
 ## Citation
 
-If you use **CSV2FAIR_KG** in your research or application, please cite the following:
+If you use **RAG-interface** in your research or application, please cite the paper:
 
-> Flüh, M. (2025). *FAIR GraphRAG: A Retrieval-Augmented Generation Approach for Semantic Data Analysis*.
+> M. Flüh, S.-Y. Kim, C. V. Schneider, and S. Geisler, "FAIR GraphRAG: A Retrieval-Augmented Generation Approach for Semantic Data Analysis," in *2025 IEEE International Conference on Knowledge Graph (ICKG)*, Limassol, Cyprus, 2025, pp. 90–97, doi: [10.1109/ICKG66886.2025.00019](https://doi.org/10.1109/ICKG66886.2025.00019).
 
-A formal citation file is included as [`CITATION.cff`](CITATION.cff) for automated reference managers and repositories.
+The accepted version is freely available on arXiv: [arXiv:2607.11464](https://arxiv.org/abs/2607.11464)
 
+<details>
+<summary>BibTeX</summary>
+
+```bibtex
+@inproceedings{flueh2025fairgraphrag,
+  author    = {Fl{\"u}h, Marlena and Kim, Soo-Yon and Schneider, Carolin Victoria and Geisler, Sandra},
+  title     = {{FAIR} {GraphRAG}: A Retrieval-Augmented Generation Approach for Semantic Data Analysis},
+  booktitle = {2025 IEEE International Conference on Knowledge Graph (ICKG)},
+  address   = {Limassol, Cyprus},
+  publisher = {IEEE},
+  year      = {2025},
+  pages     = {90--97},
+  doi       = {10.1109/ICKG66886.2025.00019},
+  eprint    = {2607.11464},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.IR}
+}
+```
+
+</details>
+
+To cite this software specifically, use the archived release: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21359631.svg)](https://doi.org/10.5281/zenodo.21359631)
+
+A machine-readable citation file is included as [`CITATION.cff`](CITATION.cff).
 ## License
 
 This project is licensed under the [MIT License](LICENSE). You are free to use, modify, and distribute this software with attribution.
