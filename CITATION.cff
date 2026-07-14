@@ -1,12 +1,56 @@
 cff-version: 1.2.0
-title: FAIR RAG Interface
-message: "If you use this software, please cite it as below."
+title: FAIR Retrieval-Augmented Generation Interface
+message: "If you use this software, please cite the paper below."
 type: software
 authors:
   - family-names: Flüh
     given-names: Marlena
     affiliation: "RWTH Aachen University, Germany"
     orcid: "https://orcid.org/0009-0008-6379-2988"
-date-released: "2025-09-19"
+abstract: >-
+  User interface for the FAIR GraphRAG system. An LLM serves as a chatbot and
+  enables querying a knowledge graph stored in Neo4j for data analysis purposes.
+keywords:
+  - FAIR data principles
+  - FAIR Digital Object
+  - retrieval-augmented generation
+  - knowledge graph
+  - large language model
+version: 1.0.1
+date-released: "2026-07-14"
 repository-code: "https://github.com/FAIR-GraphRAG/RAG-interface"
 license: MIT
+preferred-citation:
+  type: conference-paper
+  title: "FAIR GraphRAG: A Retrieval-Augmented Generation Approach for Semantic Data Analysis"
+  authors:
+    - family-names: Flüh
+      given-names: Marlena
+      orcid: "https://orcid.org/0009-0008-6379-2988"
+    - family-names: Kim
+      given-names: Soo-Yon
+      orcid: "https://orcid.org/0000-0001-5975-0031"
+    - family-names: Schneider
+      given-names: Carolin Victoria
+      orcid: "https://orcid.org/0000-0002-6728-9246"
+    - family-names: Geisler
+      given-names: Sandra
+      orcid: "https://orcid.org/0000-0002-8970-6282"
+  collection-title: "2025 IEEE International Conference on Knowledge Graph (ICKG)"
+  conference:
+    name: "2025 IEEE International Conference on Knowledge Graph (ICKG)"
+    city: Limassol
+    country: CY
+    date-start: "2025-11-13"
+    date-end: "2025-11-14"
+  publisher:
+    name: IEEE
+  year: 2025
+  start: 90
+  end: 97
+  isbn: "979-8-3315-6689-0"
+  doi: "10.1109/ICKG66886.2025.00019"
+  identifiers:
+    - type: other
+      value: "arXiv:2607.11464"
+      description: "arXiv version of the paper"
